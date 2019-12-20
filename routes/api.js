@@ -5,7 +5,9 @@ const cors = require('cors')
 server.use(Express.json())
 server.use(cors())
 
-server.listen(4000,()=>console.log("Ready in Port 4000"))
+const port = process.env.PORT || 4000
+
+server.listen(port,()=>console.log("Ready in Port 4000"))
 
 server.get('/',async (req, res) => {
     // const results = app.read()
