@@ -2,8 +2,8 @@ const Express =require('express')
 const server = Express()
 const app = require('../data/database')
 const cors = require('cors')
-server.use(Express.json())
-server.use(cors())
+server.use(Express.json())//so the server can understand the body of the request
+server.use(cors()) //so the browser allow the sharing of resorces
 
 const port = process.env.PORT || 4000
 
