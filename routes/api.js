@@ -2,20 +2,18 @@ const Express =require('express')
 const server = Express()
 const app = require('../data/database')
 const cors = require('cors')
-server.use(Express.json())//so the server can understand the body of the request
-server.use(cors()) //so the browser allow the sharing of resorces
+server.use(Express.json())//so the server can understand the body of the request (It parses incoming requests with JSON payloads (carga util) and is based on body-parser)
+server.use(cors()) //so the browser allow the sharing of resorces (Cross Origin Resorce Sharing)
 
 const port = process.env.PORT || 4000
 
 server.listen(port,()=>console.log("Ready in Port 4000"))
 
 server.get('/',async (req, res) => {
-    // const results = app.read()
     res.send(await app.read())
 })
 
 server.get('/:type',async (req, res) => {
-    // const results = app.read()
     res.send(await app.readFilter(req.params.type))
     console.log(req.params.type)
 })
@@ -32,7 +30,6 @@ server.patch('/:_id',async function(req,res){
 
 server.delete('/:_id',async function(req,res){
     let result = await app.erase(req.params._id)
-    // console.log(req.params)
     console.log(result)
     res.send('removed : '+ req.params._id )
 })
