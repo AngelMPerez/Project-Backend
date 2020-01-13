@@ -1,35 +1,35 @@
 const Express =require('express')
-const server = Express()
-const app = require('../data/database')
+const app = Express()
+const dal = require('../data/database')
 const cors = require('cors')
-server.use(Express.json())//so the server can understand the body of the request (It parses incoming requests with JSON payloads (carga util) and is based on body-parser)
-server.use(cors()) //so the browser allow the sharing of resorces (Cross Origin Resorce Sharing)
+app.use(Express.json())//so the app can understand the body of the request (It parses incoming requests with JSON payloads (carga util) and is based on body-parser)
+app.use(cors()) //so the browser allow the sharing of resorces (Cross Origin Resorce Sharing)
 
 const port = process.env.PORT || 4000
 
-server.listen(port,()=>console.log("Ready in Port 4000"))
+app.listen(port,()=>console.log("Ready in Port 4000"))
 
-server.get('/',async (req, res) => {
-    res.send(await app.read())
+app.get('/',async (req, res) => {
+    res.send(await dal.read())
 })
 
-server.get('/:type',async (req, res) => {
-    res.send(await app.readFilter(req.params.type))
+app.get('/:type',async (req, res) => {
+    res.send(await dal.readFilter(req.params.type))
     console.log(req.params.type)
 })
 
-server.post('/',async function(req,res){
-    await app.create(req.body)
+app.post('/',async function(req,res){
+    await dal.create(req.body)
     console.log(req.body)
     res.send('success')
 })
 
-server.patch('/:_id',async function(req,res){
-    res.send(await app.update(req.body,req.params._id))
+app.patch('/:_id',async function(req,res){
+    res.send(await dal.update(req.body,req.params._id))
 })
 
-server.delete('/:_id',async function(req,res){
-    let result = await app.erase(req.params._id)
+app.delete('/:_id',async function(req,res){
+    let result = await dal.erase(req.params._id)
     console.log(result)
     res.send('removed : '+ req.params._id )
 })
