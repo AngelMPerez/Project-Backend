@@ -1,6 +1,6 @@
 const MongoClient = require('mongodb').MongoClient;
-const ObjectId = require('objectid')
-require('dotenv').config()
+const ObjectId = require('mongodb').ObjectID
+require('dotenv').config() // env-> environment variables to protect the passwords
 
 const uri = process.env.ATLAS_CONNECTION;
 
