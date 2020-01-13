@@ -5,6 +5,8 @@ const cors = require('cors')
 app.use(Express.json())//so the app can understand the body of the request (It parses incoming requests with JSON payloads (carga util) and is based on body-parser)
 app.use(cors()) //so the browser allow the sharing of resorces (Cross Origin Resorce Sharing)
 
+//Restful -> representational state transfer (use http)
+
 const port = process.env.PORT || 4000
 
 app.listen(port,()=>console.log("Ready in Port 4000"))
