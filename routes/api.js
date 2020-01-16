@@ -1,5 +1,5 @@
 const Express =require('express')
-const app = Express()
+const app = Express()// para poder usar routes
 const dal = require('../data/database')
 const cors = require('cors')
 app.use(Express.json())//so the app can understand the body of the request (It parses incoming requests with JSON payloads (carga util) and is based on body-parser)
@@ -13,11 +13,6 @@ app.listen(port,()=>console.log("Ready in Port 4000"))
 
 app.get('/',async (req, res) => {
     res.send(await dal.read())
-})
-
-app.get('/:type',async (req, res) => {
-    res.send(await dal.readFilter(req.params.type))
-    console.log(req.params.type)
 })
 
 app.post('/',async function(req,res){
